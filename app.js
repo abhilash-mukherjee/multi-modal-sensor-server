@@ -5,6 +5,7 @@ import { authorizeRequest } from './middlewares/auth.js';
 import { calibrateRouter } from './routers/calibrateRouter.js';
 import { immovableSpaceRouter } from './routers/immovableSpaceRouter.js';
 import { baselineDataRouter } from './routers/baselineDataRouter.js';
+import { sensorDataRouter } from './routers/sensorDataRouter.js';
 
 const app = express();
 const port = 3000;
@@ -14,6 +15,7 @@ app.use(authorizeRequest);
 app.use('/calibrate', calibrateRouter);
 app.use('/immovable-space', immovableSpaceRouter);
 app.use('/baseline-data', baselineDataRouter);
+app.use('/sensor-data', sensorDataRouter);
 
 app.get('/', (req, res) => {
     res.send('Hello World!');

@@ -2,30 +2,37 @@
 import dotenv from 'dotenv';
 dotenv.config();
 
-const array = [];
+const arrays = {};
 
 export const getMaxArrayLength = () => parseInt(process.env.CACHE_ARRAY_LENGTH, 10);
 
-export const getArray = () => {
-    return [...array];  // Return a copy to prevent direct manipulation
-};
-
-export const addItem = (item) => {
-    if (array.length >= getMaxArrayLength()) {
-        array.shift();  // Remove the oldest item
+export const getArray = (key) => {
+    if (!arrays[key]) {
+        arrays[key] = [];  // Initialize if not already present
     }
-    array.push(item);  // Add the new item
+    return [...arrays[key]];  // Return a copy to prevent direct manipulation
 };
 
-export const mean = () => {
-    if (array.length === 0) return 0;
-    const sum = array.reduce((acc, val) => acc + val, 0);
-    return sum / array.length;
+export const addItem = (item, key) => {
+    if (!arrays[key]) {
+        arrays[key] = [];  // Initialize if not already present
+    }
+    if (arrays[key].length >= getMaxArrayLength()) {
+        arrays[key].shift();  // Remove the oldest item
+    }
+    arrays[key].push(item);  // Add the new item
+    console.log(arrays[key]);
 };
 
-export const median = () => {
-    if (array.length === 0) return 0;
-    const sortedArray = [...array].sort((a, b) => a - b);
+export const mean = (key) => {
+    if (!arrays[key] || arrays[key].length === 0) return 0;
+    const sum = arrays[key].reduce((acc, val) => acc + val, 0);
+    return sum / arrays[key].length;
+};
+
+export const median = (key) => {
+    if (!arrays[key] || arrays[key].length === 0) return 0;
+    const sortedArray = [...arrays[key]].sort((a, b) => a - b);
     const mid = Math.floor(sortedArray.length / 2);
 
     if (sortedArray.length % 2 !== 0) {
