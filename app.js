@@ -2,7 +2,7 @@ import bodyParser from 'body-parser';
 import express from 'express';
 import mongoose from 'mongoose';
 import { authorizeRequest } from './middlewares/auth.js';
-import { calibrateRouter } from './routers/calibrateRouter.js';
+import { calibrationRouter } from './routers/calibrateRouter.js';
 import { immovableSpaceRouter } from './routers/immovableSpaceRouter.js';
 import { baselineDataRouter } from './routers/baselineDataRouter.js';
 import { sensorDataRouter } from './routers/sensorDataRouter.js';
@@ -12,10 +12,10 @@ const port = 3000;
 
 app.use(bodyParser.json());
 app.use(authorizeRequest);
-app.use('/calibrate', calibrateRouter);
 app.use('/immovable-space', immovableSpaceRouter);
 app.use('/baseline-data', baselineDataRouter);
 app.use('/sensor-data', sensorDataRouter);
+app.use('/calibrate', calibrationRouter);
 
 app.get('/', (req, res) => {
     res.send('Hello World!');

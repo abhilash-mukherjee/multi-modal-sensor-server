@@ -16,25 +16,27 @@ router.post("/", async (req, res) => {
         humidityReading,
         gasReading,
         immovableSpaceName,
-        sku
     } = req.body;
 
-    if (!name || !sku || !immovableSpaceName) {
+    if (!name || !immovableSpaceName) {
         return res.status(400).json({ message: "Name, SKU, and immovable space name must be provided." });
     }
 
     try {
+        // Check if immovable space exists
+        const immovableSpace = await ImmovableSpace.findOne({ name: immovableSpaceName });
+        if (!immovableSpace) {
+            return res.status(404).json({ message: "Immovable space with the provided name does not exist." });
+        }
+
+        const sku = immovableSpace.sku;
+
         // Check if baseline data exists
         const baseline = await BaselineData.findOne({ sku });
         if (!baseline) {
             return res.status(404).json({ message: "No baseline data found for the given SKU." });
         }
 
-        // Check if immovable space exists
-        const immovableSpace = await ImmovableSpace.findOne({ name: immovableSpaceName });
-        if (!immovableSpace) {
-            return res.status(404).json({ message: "Immovable space with the provided name does not exist." });
-        }
 
         // Check if sensor exists
         let sensor = await Sensor.findOne({ name });

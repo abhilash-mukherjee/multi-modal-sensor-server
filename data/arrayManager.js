@@ -42,10 +42,17 @@ export const median = (key) => {
     }
 };
 
+export const isFull = (key) => {
+    if (!arrays[key] || arrays[key].length === 0) return false;
+    if(arrays[key].length < getMaxArrayLength()) return false;
+    return true;
+}
+
 export default {
     getArray,
     addItem,
     mean,
     median,
-    getMaxArrayLength
+    getMaxArrayLength,
+    isFull
 };
