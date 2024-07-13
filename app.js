@@ -8,7 +8,7 @@ import { baselineDataRouter } from './routers/baselineDataRouter.js';
 import { sensorDataRouter } from './routers/sensorDataRouter.js';
 
 const app = express();
-const port = 3000;
+const port =  parseInt(process.env.PORT, 10) || 3000;
 
 app.use(bodyParser.json());
 app.use(authorizeRequest);
@@ -23,8 +23,8 @@ app.get('/', (req, res) => {
 
 async function connectToDBAndStartServer() {
     try {
-        await mongoose.connect('mongodb+srv://sayakhaldar5:sayak%40123@mongo-cluster-perishabl.qe7nys2.mongodb.net/sensor_multi_module?retryWrites=true&w=majority&appName=mongo-cluster-perishable');
-        console.log("Connection successful");
+        await mongoose.connect(process.env.DB_URL);
+        console.log("Connection successful: " + process.env.DB_URL);
         app.listen(port, () => {
             console.log(`Server listening on port ${port}`);
         });
