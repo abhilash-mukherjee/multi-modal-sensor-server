@@ -44,7 +44,8 @@ router.post("/:immovableSpaceName", async (req, res) => {
             message: "Sensor calibration successful.",
             sensorName: sensor.name,
             calibrationFactor: sensor.calibrationFactor,
-            isCalibrated: sensor.isCalibrated
+            isCalibrated: sensor.isCalibrated,
+            lastCalibrated: sensor.lastCalibrated
         });
 
     } catch (error) {
