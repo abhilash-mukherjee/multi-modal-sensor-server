@@ -10,7 +10,8 @@ const SensorSchema = new mongoose.Schema({
     gasReading: { type: Number, required: true },
     immovableSpaceName: { type: String },
     isCalibrated: { type: Boolean, required: true, default: false},
-    calibrationFactor: {type: Number}
+    calibrationFactor: {type: Number},
+    lastCalibrated: { type: Date }
 });
 
 const Sensor = mongoose.model('Sensor', SensorSchema);

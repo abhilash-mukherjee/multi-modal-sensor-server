@@ -37,6 +37,7 @@ router.post("/:immovableSpaceName", async (req, res) => {
         // Update sensor with the mean value as calibration factor and set isCalibrated to true
         sensor.calibrationFactor = parseInt(meanValue);
         sensor.isCalibrated = true;
+        sensor.lastCalibrated = new Date();
         await sensor.save();
 
         res.json({
