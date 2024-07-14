@@ -1,6 +1,7 @@
 import bodyParser from 'body-parser';
 import express from 'express';
 import mongoose from 'mongoose';
+import cors from 'cors'
 import { authorizeRequest } from './middlewares/auth.js';
 import { calibrationRouter } from './routers/calibrateRouter.js';
 import { immovableSpaceRouter } from './routers/immovableSpaceRouter.js';
@@ -11,6 +12,7 @@ const app = express();
 const port =  parseInt(process.env.PORT, 10) || 3000;
 
 app.use(bodyParser.json());
+app.use(cors());
 app.use(authorizeRequest);
 app.use('/immovable-space', immovableSpaceRouter);
 app.use('/baseline-data', baselineDataRouter);
