@@ -21,7 +21,6 @@ export const addItem = (item, key) => {
         arrays[key].shift();  // Remove the oldest item
     }
     arrays[key].push(item);  // Add the new item
-    console.log(arrays[key]);
 };
 
 export const mean = (key) => {

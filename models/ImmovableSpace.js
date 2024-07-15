@@ -6,7 +6,7 @@ import Sensor from './Sensor.js';
 const ImmovableSpaceSchema = new mongoose.Schema({
     sku: {
         type: String,
-        enum: ['BANANA', 'AVOCARDO'],
+        enum: ['BANANA', 'AVOCARDO', 'GUAVA'],
         required: true
     },
     name: { type: String, required: true }
