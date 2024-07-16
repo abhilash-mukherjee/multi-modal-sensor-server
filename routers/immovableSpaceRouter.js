@@ -42,7 +42,7 @@ immovableSpaceRouter.post("/", async (req, res) => {
     }
 
     // Validate SKU against the enum
-    const validSKUs = ['BANANA', 'AVOCARDO'];
+    const validSKUs = ['BANANA', 'AVOCARDO', 'GUAVA'];
     if (!validSKUs.includes(sku)) {
         return res.status(400).json({ message: "Invalid SKU provided." });
     }
