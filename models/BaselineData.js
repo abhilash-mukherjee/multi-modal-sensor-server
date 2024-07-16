@@ -5,7 +5,7 @@ import mongoose from 'mongoose';
 const baselineDataSchema = new mongoose.Schema({
     sku: {
         type: String,
-        enum: ['BANANA', 'AVOCARDO'],
+        enum: ['BANANA', 'AVOCARDO', 'GUAVA'],
         required: true
     },
     baselineHumidity: { type: Number, required: true },

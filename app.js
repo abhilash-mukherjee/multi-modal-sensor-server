@@ -20,7 +20,7 @@ app.use('/sensor-data', sensorDataRouter);
 app.use('/calibrate', calibrationRouter);
 
 app.get('/', (req, res) => {
-    res.send('Hello World!v1');
+    res.send('Hello World!v3');
 });
 
 async function connectToDBAndStartServer() {
